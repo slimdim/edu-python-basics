@@ -6,4 +6,4 @@ seconds = input_seconds % 60
 minutes = input_seconds // 60 % 60
 hours = input_seconds // 3600
 
-print(f'Ваше время: {hours}:{minutes}:{seconds}')
+print(f'Ваше время: {hours:02}:{minutes:02}:{seconds:02}')
