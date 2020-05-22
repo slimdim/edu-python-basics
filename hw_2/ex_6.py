@@ -19,7 +19,7 @@
 # }
 
 # список параметров товара
-params_list = ("название", "цена", "количество", "eд")
+params_list = ('название', 'цена', 'количество', 'eд')
 
 # заполнение списка
 my_goods_list = []
@@ -37,17 +37,20 @@ while end_of_input != 'n':
     index += 1
     end_of_input = input('Добавить ещё один товар (y/n)?\n')
 
-print(my_goods_list)
+print(f'Ваш список:\n{my_goods_list}')
 
-# my_stat = {good_1.get("название")}
-# print(my_stat)
-# my_stat.add(good_2.get("название"))
-# print(my_stat)
-# my_stat.add(good_3.get("название"))
-# print(my_stat)
-#
-# goods_list = [(1, good_1),
-#               (2, good_2),
-#               (3, good_3)]
-#
-# print(goods_list)
+# Тестовые данные для проверки сбора статистики (раскомментировать строчки ниже)
+# my_goods_list = [(1, {'название': 'пк', 'цена': 20000, 'количество': 4, 'eд': 'шт'}),
+#                 (2, {'название': 'принтер', 'цена': 8000, 'количество': 4, 'eд': 'шт'}),
+#                 (3, {'название': 'сканер', 'цена': 5000, 'количество': 7, 'eд': 'шт'})]
+
+#собираем статистику
+my_goods_stat = {}
+for param in params_list:
+    stat_counter = set()
+    for goods_object in my_goods_list:
+        object_params = goods_object[1]
+        stat_counter.add(object_params.get(param))
+    my_goods_stat.update({param: list(stat_counter)})
+
+print(f'\nСтатистика по товарам:\n{my_goods_stat}')
