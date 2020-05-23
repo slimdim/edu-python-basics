@@ -24,7 +24,7 @@ params_list = ('название', 'цена', 'количество', 'eд')
 # заполнение списка
 my_goods_list = []
 end_of_input = 'y'
-index = 1
+index = 0
 while end_of_input != 'n':
     my_goods_object = {}
     for param in params_list:
@@ -33,8 +33,8 @@ while end_of_input != 'n':
             my_goods_object.update({param: int(goods_value)})
         else:
             my_goods_object.update({param: goods_value})
-    my_goods_list.append((index, my_goods_object))
     index += 1
+    my_goods_list.append((index, my_goods_object))
     end_of_input = input('Добавить ещё один товар (y/n)?\n')
 
 print(f'Ваш список:\n{my_goods_list}')
@@ -44,7 +44,7 @@ print(f'Ваш список:\n{my_goods_list}')
 #                 (2, {'название': 'принтер', 'цена': 8000, 'количество': 4, 'eд': 'шт'}),
 #                 (3, {'название': 'сканер', 'цена': 5000, 'количество': 7, 'eд': 'шт'})]
 
-#собираем статистику
+# собираем статистику
 my_goods_stat = {}
 for param in params_list:
     stat_counter = set()
