@@ -14,7 +14,7 @@ from re import findall
 final_dict = dict()
 with open('lesson5_6.txt') as obj_f:
     for cur_string in obj_f:
-        subj_info = cur_string.split(":")
+        subj_info = cur_string.split(':')
         lessons = [int(el) for el in findall('\d+', subj_info[1])]
         final_dict.update({subj_info[0]: sum(lessons)})
 
