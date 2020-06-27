@@ -8,31 +8,26 @@
 
 
 class Worker:
-    name = ''
-    surname = ''
-    _income = dict()
 
-    def set_income(self, wage, bonus):
-        self._income.update({'wage': wage, 'bonus': bonus})
-
-    def get_income(self):
-        return self._income
+    def __init__(self, name, surname, position, income):
+        self.name = name
+        self.surname = surname
+        self.position = position
+        self._wage = income['wage']
+        self._bonus = income['bonus']
 
 
 class Position(Worker):
     def get_full_name(self):
-        return ''.join(self.name + ' ' + self.surname)
+        return ''.join(f'{self.name} {self.surname}')
 
     def get_total_income(self):
-        income = self.get_income()
-        return income.get('wage') + income.get('bonus')
+        return self._wage + self._bonus
 
 
-position = Position()
-position.name = 'Иван'
-position.surname = 'Петров'
-position.set_income(100000, 50000)
+position = Position('Иван', 'Петров', 'слесарь 4го разряда', {"wage": 240000, "bonus": 30000})
 print(f'Имя: {position.name}')
 print(f'Фамилия: {position.surname}')
+print(f'Должность: {position.position}')
 print(f'Полное имя: {position.get_full_name()}')
 print(f'Доход: {position.get_total_income()}')

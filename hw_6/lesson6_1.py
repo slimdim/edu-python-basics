@@ -6,32 +6,18 @@
 # Задачу можно усложнить, реализовав проверку порядка режимов, и при его нарушении выводить соответствующее
 # сообщение и завершать скрипт.
 from time import sleep
+from itertools import cycle
 
 
 class TrafficLight:
-    __color = ''
+    def __init__(self):
+        self.__color = (('green', 7), ('yellow', 2), ('red', 5))
 
-    def running(self, color):
-        self.__color = color
-        if self.__color == 'green':
-            self.__timer_print(7)
-        elif self.__color == 'yellow':
-            self.__timer_print(3)
-        elif self.__color == 'red':
-            self.__timer_print(5)
-        else:
-            print(f'Color error for {self.__color}!')
-
-    def __timer_print(self, seconds):
-        i = 0
-        while i < seconds:
-            i += 1
-            print(self.__color)
-            sleep(1.0)
+    def running(self):
+        for color, sec in cycle(self.__color):
+            print(f'{color}! Wait for {sec}')
+            sleep(sec)
 
 
 traffic_light = TrafficLight()
-traffic_light.running('red')
-traffic_light.running('yellow')
-traffic_light.running('green')
-traffic_light.running('purple')
+traffic_light.running()
