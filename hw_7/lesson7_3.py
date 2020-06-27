@@ -4,7 +4,8 @@
 # деление (__truediv__()).Данные методы должны применяться только к клеткам и выполнять увеличение, уменьшение,
 # умножение и обычное (не целочисленное) деление клеток, соответственно. В методе деления должно осуществляться
 # округление значения до целого числа.
-# Сложение. Объединение двух клеток. При этом число ячеек общей клетки должно равняться сумме ячеек исходных двух клеток.
+# Сложение. Объединение двух клеток. При этом число ячеек общей клетки должно равняться сумме ячеек исходных
+# двух клеток.
 # Вычитание. Участвуют две клетки. Операцию необходимо выполнять только если разность количества ячеек двух клеток
 # больше нуля, иначе выводить соответствующее сообщение.
 # Умножение. Создается общая клетка из двух. Число ячеек общей клетки определяется как произведение количества ячеек
@@ -19,3 +20,48 @@
 # строку: *****\n*****\n**.
 # Или, количество ячеек клетки равняется 15, количество ячеек в ряду — 5. Тогда метод make_order() вернет
 # строку: *****\n*****\n*****.
+
+
+class Cell:
+    def __init__(self, cells_num):
+        self.cells_num = cells_num
+
+    def __str__(self):
+        return f'Количество клеток {self.cells_num}'
+
+    def __add__(self, other):
+        return Cell(self.cells_num + other.cells_num)
+
+    def __sub__(self, other):
+        result = self.cells_num - other.cells_num
+        if result >= 0:
+            return Cell(result)
+        else:
+            print('Ошибка операции!')
+            return None
+
+    def __mul__(self, other):
+        return Cell(self.cells_num * other.cells_num)
+
+    def __truediv__(self, other):
+        return Cell(self.cells_num // other.cells_num)
+
+    def make_order(self, num):
+        print(('*' * num + '\n') * (self.cells_num // num) + '*' * (self.cells_num % num))
+
+
+my_cell1 = Cell(10)
+my_cell2 = Cell(5)
+my_cell3 = Cell(12)
+
+print(my_cell1 + my_cell2)
+print(my_cell3 - my_cell1)
+print(my_cell2 - my_cell3)
+print(my_cell2 * my_cell1)
+print(my_cell3 / my_cell2)
+
+my_cell1.make_order(4)
+print('')
+my_cell2.make_order(3)
+print('')
+my_cell3.make_order(5)
